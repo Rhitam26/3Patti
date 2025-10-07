@@ -1,0 +1,7 @@
+/* src/index.css - import this file in index.js (or main.jsx) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: import your App.css below, or paste the App.css content here */
+@import "./App.css";

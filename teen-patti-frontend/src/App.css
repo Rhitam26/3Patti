@@ -1,0 +1,231 @@
+/* App.css
+   Meant to complement Tailwind (keep your tailwind @ directives above custom rules in build pipeline)
+*/
+
+/* ====== Tailwind directives (if you compile Tailwind from this file) ====== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ====== CSS Variables (theme-friendly) ====== */
+:root{
+  --accent-1: #16a34a;   /* green-600 */
+  --accent-2: #059669;   /* green-700 */
+  --muted: #6b7280;      /* gray-500 */
+  --glass-bg: rgba(255,255,255,0.06);
+  --card-bg: rgba(255,255,255,0.9);
+  --card-border: rgba(0,0,0,0.04);
+  --max-content-width: 1120px;
+  --radius-lg: 1rem;
+  --shadow-soft: 0 10px 30px rgba(2,6,23,0.12);
+}
+
+/* ====== Global tweaks ====== */
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-attachment: fixed;
+  background-size: cover;
+  color: #0f172a; /* slate-900 for better contrast on white cards */
+  font-feature-settings: "kern" 1;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+/* ====== Layout helpers ====== */
+.container-max {
+  max-width: var(--max-content-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Centered card container used on the connect screen */
+.connect-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.94));
+  border-radius: calc(var(--radius-lg) + 0.5rem);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--card-border);
+}
+
+/* Subtle glass panel for overlays */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(6px) saturate(120%);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Card style for main white blocks to keep consistent padding + radius */
+.app-card {
+  background: var(--card-bg);
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 20px rgba(2,6,23,0.08);
+  border: 1px solid var(--card-border);
+  padding: 1.25rem;
+}
+
+/* Small utility for visually hidden text (for a11y) */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+/* ====== Spinner / loader styles (used in app) ====== */
+.spinner {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 9999px;
+  border: 2px solid rgba(255,255,255,0.25);
+  border-bottom-color: rgba(255,255,255,0.9);
+  animation: spin 800ms linear infinite;
+}
+.spinner-lg {
+  width: 3rem;
+  height: 3rem;
+  border-width: 3px;
+  border-bottom-color: var(--accent-1);
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ====== Button micro-variants to pair with Tailwind classes ====== */
+.btn-glow {
+  transition: box-shadow 160ms ease, transform 120ms ease;
+  will-change: transform;
+}
+.btn-glow:hover { box-shadow: 0 10px 30px rgba(16,185,129,0.12); transform: translateY(-2px); }
+.btn-deep {
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  color: white;
+}
+
+/* ====== Header tweaks ====== */
+.app-header {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background-color: rgba(255,255,255,0.9);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+/* Wallet address pill */
+.wallet-pill {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace;
+  background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));
+  padding: 0.35rem 0.6rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+}
+
+/* ====== Table & game area polished styles ====== */
+.game-table {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(15,23,42,0.04);
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(249,250,251,0.98));
+}
+
+/* Card header with accent line */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed rgba(0,0,0,0.04);
+}
+.card-accent {
+  width: 6px;
+  height: 28px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
+}
+
+/* Tiny badge used for statuses */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: none;
+}
+
+/* ====== Footer ====== */
+.app-footer {
+  background: rgba(255,255,255,0.98);
+  border-top: 1px solid rgba(0,0,0,0.04);
+  color: var(--muted);
+}
+
+/* ====== Scrollbar (non-intrusive) ====== */
+@supports (scrollbar-color: auto) {
+  :root {
+    scrollbar-color: rgba(0,0,0,0.12) rgba(255,255,255,0.02);
+    scrollbar-width: thin;
+  }
+}
+::-webkit-scrollbar { height: 10px; width: 10px; }
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.12);
+  border-radius: 999px;
+  min-height: 24px;
+}
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ====== Responsive micro-adjusts ====== */
+@media (max-width: 640px) {
+  .wallet-pill { display: none; } /* hide long address on tiny screens, keep short variant in UI */
+  .container-max { padding-left: 0.75rem; padding-right: 0.75rem; }
+}
+
+/* ====== Dark theme support (optional if you toggle dark classes) ====== */
+.dark body {
+  color: #e6eef8;
+  background: linear-gradient(180deg,#042c1f, #062b1f);
+}
+.dark .app-card { background: rgba(6,8,11,0.6); border: 1px solid rgba(255,255,255,0.03); box-shadow: none; }
+.dark .wallet-pill { background: rgba(255,255,255,0.02); }
+
+/* ====== Micro interactions for table chips, clickable elements ====== */
+.clickable {
+  cursor: pointer;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+.clickable:active { transform: translateY(1px); opacity: 0.92; }
+
+/* ====== Utility: truncated monospace for addresses ====== */
+.mono-truncate {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 10ch;
+}
+
+/* ====== Small helper for error boxes (matches components in app) ====== */
+.alert-error {
+  background: #fff1f2; /* light red */
+  border: 1px solid rgba(239,68,68,0.15);
+  color: #991b1b;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+
+/* End of file */
