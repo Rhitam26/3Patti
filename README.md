@@ -1,3 +1,7 @@
+<img width="939" height="911" alt="image" src="https://github.com/user-attachments/assets/fa667712-bdc2-429a-91a0-372dffacd5d3" />
+
+
+
 
 # Teen Patti Blockchain Game
 
@@ -20,6 +24,9 @@ The game supports two authentication methods to cater to different user preferen
 - **Random Tables**: Join public games with other players
 - **Private Tables**: Create invite-only games for friends and family
 - **Live Tables**: Browse and join active games in real-time
+
+  <img width="939" height="911" alt="image" src="https://github.com/user-attachments/assets/5682aaf6-aad8-4a15-bd4d-1aa02a76773b" />
+
 
 ### Blockchain Integration
 - Built on Polygon Mumbai testnet for fast, low-cost transactions
